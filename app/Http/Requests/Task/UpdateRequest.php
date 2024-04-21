@@ -16,7 +16,7 @@ class UpdateRequest extends FormRequest
             'description' => 'nullable',
             'priority' => 'nullable',
             'status' => 'nullable',
-            'expired_at' => 'nullable|datetime'
+            'expired_at' => 'nullable|date_format:Y-m-d H:i:s'
         ];
     }
 }

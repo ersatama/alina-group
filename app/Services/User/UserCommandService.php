@@ -12,7 +12,7 @@ class UserCommandService extends Service
         $this->model = $user;
     }
 
-    public function attempt($credentials): ?bool
+    public function attempt($credentials): string|null
     {
         if ($token = auth()->attempt($credentials)) {
             return $token;

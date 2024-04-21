@@ -24,21 +24,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
 
     /*** AUTHORIZATION ***/
-    Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
 
-    Route::group(['middleware' => 'auth:api'], function() {
+    /*** TASKS ***/
+    Route::prefix('task')->group(function() {
 
-        /*** TASKS ***/
-        Route::prefix('task')->group(function() {
-
-            Route::get('get', [TaskController::class, 'get'])->name('task.get');
-            Route::get('getById/{id}', [TaskController::class, 'getById'])->name('task.getById');
-            Route::delete('deleteById/{id}', [TaskController::class, 'deleteById'])->name('task.delete');
-            Route::put('update/{id}', [TaskController::class, 'update'])->name('task.update');
-            Route::post('create', [TaskController::class, 'create'])->name('task.create');
-
-        });
+        Route::post('get', [TaskController::class, 'get']);
+        Route::get('getById/{id}', [TaskController::class, 'getById']);
+        Route::delete('delete/{id}', [TaskController::class, 'delete']);
+        Route::put('update/{id}', [TaskController::class, 'update']);
+        Route::post('create', [TaskController::class, 'create']);
 
     });
 });
